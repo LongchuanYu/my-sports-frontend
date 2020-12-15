@@ -160,13 +160,20 @@ export default {
         console.log(this.data)
     },
     handleUpdate: function(){
-
+      let data = {
+        name: 'liyang',
+        data: this.data
+      }
+      this.$axios.post('/update-data', data).then(resp=>{
+        console.log(resp);
+      })
     },
 
   },
   beforeCreate: function(){
-    this.$axios.get('test').then(res=>{
-      console.log(res)
+    let path = '/get-datas?name=liyang'
+    this.$axios.get(path).then(res=>{
+      this.data = JSON.parse(res.data);
     })
   }
 
